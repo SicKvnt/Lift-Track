@@ -364,20 +364,20 @@ function toast(msg) {
 
 function todayStr() {
   const d = new Date();
-  return \\`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}\`;
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
 }
 
 function fmt(s) {
   if (!s) return '—';
   const [y,m,d] = s.split('-');
-  return \\`${d}/${m}/${y.slice(2)}\`;
+  return `${d}/${m}/${y.slice(2)}`;
 }
 
 function fmtToday() {
   const d = new Date();
   const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
   const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  return \\`${days[d.getDay()]} ${d.getDate()} ${months[d.getMonth()]}\`;
+  return `${days[d.getDay()]} ${d.getDate()} ${months[d.getMonth()]}`;
 }
 
 function vol(e) { return +(e.weight * e.sets * e.reps).toFixed(1); }
@@ -431,7 +431,7 @@ function renderHistory() {
   if (search) list = list.filter(e => e.exercise.toLowerCase().includes(search));
   if (filter) list = list.filter(e => e.exercise === filter);
   list.sort((a,b) => b.date.localeCompare(a.date) || b.id.localeCompare(a.id));
-  document.getElementById('h-count').textContent = \\`${list.length} entries\`;
+  document.getElementById('h-count').textContent = `${list.length} entries`;
   const body = document.getElementById('history-body');
   if (!list.length) { body.innerHTML = '<div class="empty-state">no entries yet<br>log your first lift →</div>'; return; }
   const prMap = getPRs();
@@ -481,7 +481,7 @@ function renderProgress() {
     data: { labels, datasets: [{ label: 'Weight (kg)', data: weights, borderColor: '#c8f060', backgroundColor: 'rgba(200,240,96,0.08)', pointBackgroundColor: '#c8f060', pointRadius: 4, pointHoverRadius: 6, borderWidth: 2, fill: true, tension: 0.35 }] },
     options: {
       responsive: true,
-      plugins: { legend: { display: false }, tooltip: { backgroundColor: '#1f1f1f', borderColor: '#3a3a3a', borderWidth: 1, titleColor: '#c8f060', bodyColor: '#e8e4dc', titleFont: { family: 'Space Mono', size: 11 }, bodyFont: { family: 'Space Mono', size: 12 } },
+      plugins: { legend: { display: false }, tooltip: { backgroundColor: '#1f1f1f', borderColor: '#3a3a3a', borderWidth: 1, titleColor: '#c8f060', bodyColor: '#e8e4dc', titleFont: { family: 'Space Mono', size: 11 }, bodyFont: { family: 'Space Mono', size: 12 } } },
       scales: {
         x: { grid: { color: '#1f1f1f' }, ticks: { color: '#787060', font: { family: 'Space Mono', size: 10 }, maxRotation: 45 } },
         y: { grid: { color: '#1f1f1f' }, ticks: { color: '#787060', font: { family: 'Space Mono', size: 10 }, callback: v => v + ' kg' } }
