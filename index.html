@@ -24,7 +24,6 @@
     --accent: #c8f060;
     --accent-dim: #8aaa30;
     --danger: #ff5a5a;
-    --gold: #f0c040;
     --mono: 'Space Mono', monospace;
     --sans: 'Barlow', sans-serif;
     --radius: 6px;
@@ -33,225 +32,171 @@
   }
   html { height: 100%; }
   body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--sans);
-    font-size: 15px;
-    min-height: 100%;
-    line-height: 1.5;
-    overscroll-behavior: none;
-    -webkit-tap-highlight-color: transparent;
+    background: var(--bg); color: var(--text); font-family: var(--sans);
+    font-size: 15px; min-height: 100%; line-height: 1.5;
+    overscroll-behavior: none; -webkit-tap-highlight-color: transparent;
   }
-  .app-shell {
-    display: flex;
-    flex-direction: column;
-    min-height: 100dvh;
-    max-width: 600px;
-    margin: 0 auto;
-  }
+  .app-shell { display: flex; flex-direction: column; min-height: 100dvh; max-width: 600px; margin: 0 auto; }
+
+  /* top bar */
   .top-bar {
     padding: calc(var(--safe-top) + 1rem) 1.25rem 1rem;
     border-bottom: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-shrink: 0;
-    background: var(--bg);
-    position: sticky;
-    top: 0;
-    z-index: 10;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-shrink: 0; background: var(--bg); position: sticky; top: 0; z-index: 10;
   }
   .top-bar h1 { font-family: var(--mono); font-size: 1.2rem; font-weight: 700; letter-spacing: -0.02em; }
   .top-bar h1 span { color: var(--accent); }
-  .header-stats { display: flex; gap: 1rem; }
-  .hstat { text-align: center; }
-  .hstat-val { font-family: var(--mono); font-size: 1rem; font-weight: 700; color: var(--accent); }
-  .hstat-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
-  .content {
-    flex: 1;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-    padding: 1.25rem 1.25rem calc(80px + var(--safe-bottom));
-  }
+
+  /* content */
+  .content { flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; padding: 1.25rem 1.25rem calc(80px + var(--safe-bottom)); }
+
+  /* bottom nav */
   .bottom-nav {
-    position: fixed;
-    bottom: 0; left: 0; right: 0;
-    background: var(--surface);
-    border-top: 1px solid var(--border2);
-    display: flex;
-    padding-bottom: var(--safe-bottom);
-    z-index: 20;
+    position: fixed; bottom: 0; left: 0; right: 0;
+    background: var(--surface); border-top: 1px solid var(--border2);
+    display: flex; padding-bottom: var(--safe-bottom); z-index: 20;
   }
   .nav-btn {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 3px;
-    padding: 0.65rem 0.5rem;
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: var(--muted);
-    font-family: var(--mono);
-    font-size: 9px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    transition: color 0.15s;
-    -webkit-tap-highlight-color: transparent;
-    min-height: 56px;
+    flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 3px; padding: 0.65rem 0.5rem; background: none; border: none; cursor: pointer;
+    color: var(--muted); font-family: var(--mono); font-size: 9px; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.15s;
+    -webkit-tap-highlight-color: transparent; min-height: 56px;
   }
   .nav-btn svg { width: 22px; height: 22px; }
   .nav-btn:active, .nav-btn.active { color: var(--accent); }
+
+  /* panels */
   .panel { display: none; }
   .panel.active { display: block; }
-  .section-label {
-    font-family: var(--mono);
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.14em;
-    color: var(--muted);
-    margin-bottom: 1rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid var(--border);
-  }
-  .form-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.85rem;
-    margin-bottom: 1rem;
-  }
+
+  /* form */
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem; margin-bottom: 1rem; }
   .field { display: flex; flex-direction: column; gap: 0.35rem; }
   .field.full { grid-column: span 2; }
   label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); font-weight: 600; }
   input, select {
-    background: var(--surface);
-    border: 1px solid var(--border2);
-    border-radius: var(--radius);
-    color: var(--text);
-    font-family: var(--mono);
-    font-size: 16px;
-    padding: 0.75rem 0.9rem;
-    outline: none;
-    -webkit-appearance: none;
-    appearance: none;
-    width: 100%;
-    transition: border-color 0.15s;
+    background: var(--surface); border: 1px solid var(--border2); border-radius: var(--radius);
+    color: var(--text); font-family: var(--mono); font-size: 16px; padding: 0.75rem 0.9rem;
+    outline: none; -webkit-appearance: none; appearance: none; width: 100%; transition: border-color 0.15s;
   }
   input:focus, select:focus { border-color: var(--accent-dim); }
   input::placeholder { color: var(--muted); }
   select option { background: #1f1f1f; }
-  .btn-log {
-    width: 100%;
-    font-family: var(--mono);
-    font-size: 14px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 1rem;
-    border-radius: var(--radius);
-    cursor: pointer;
-    border: none;
-    background: var(--accent);
-    color: #0d0d0d;
-    transition: all 0.15s;
-    margin-top: 0.25rem;
-    min-height: 52px;
+
+  /* last-weight hint */
+  .last-hint {
+    font-family: var(--mono); font-size: 11px; color: var(--accent-dim);
+    margin-top: -0.15rem; min-height: 16px; transition: opacity 0.2s;
   }
-  .btn-log:active { transform: scale(0.98); background: #d8ff70; }
-  .today-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--muted);
-    margin-bottom: 1.25rem;
-    padding: 0.4rem 0.75rem;
-    background: var(--surface);
-    border: 1px solid var(--border2);
-    border-radius: 99px;
+
+  /* today summary on log tab */
+  .today-summary {
+    background: var(--surface); border: 1px solid var(--border2);
+    border-radius: var(--radius); padding: 0.85rem 1rem; margin-bottom: 1.25rem;
+  }
+  .today-summary-header {
+    display: flex; align-items: center; gap: 6px; margin-bottom: 0.6rem;
   }
   .today-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+  .today-label { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+  .today-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .today-chip {
+    font-family: var(--mono); font-size: 11px; color: var(--text);
+    background: var(--surface2); border: 1px solid var(--border2);
+    border-radius: 99px; padding: 3px 10px; white-space: nowrap;
+  }
+  .today-chip span { color: var(--accent); }
+  .today-empty { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+
+  /* log button */
+  .btn-log {
+    width: 100%; font-family: var(--mono); font-size: 14px; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase; padding: 1rem;
+    border-radius: var(--radius); cursor: pointer; border: none;
+    background: var(--accent); color: #0d0d0d; transition: all 0.15s;
+    margin-top: 0.25rem; min-height: 52px;
+  }
+  .btn-log:active { transform: scale(0.98); background: #d8ff70; }
+
+  /* toast */
   .toast {
-    position: fixed;
-    bottom: calc(72px + var(--safe-bottom) + 0.75rem);
-    left: 50%;
-    transform: translateX(-50%) translateY(8px);
-    background: var(--accent);
-    color: #0d0d0d;
-    font-family: var(--mono);
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    padding: 0.65rem 1.25rem;
-    border-radius: 99px;
-    white-space: nowrap;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.2s, transform 0.2s;
-    z-index: 99;
+    position: fixed; bottom: calc(72px + var(--safe-bottom) + 0.75rem);
+    left: 50%; transform: translateX(-50%) translateY(8px);
+    background: var(--accent); color: #0d0d0d; font-family: var(--mono);
+    font-size: 12px; font-weight: 700; letter-spacing: 0.06em;
+    padding: 0.65rem 1.25rem; border-radius: 99px; white-space: nowrap;
+    opacity: 0; pointer-events: none; transition: opacity 0.2s, transform 0.2s; z-index: 99;
   }
   .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  /* install banner */
   .install-banner {
-    background: var(--surface);
-    border: 1px solid var(--accent-dim);
-    border-radius: var(--radius);
-    padding: 0.85rem 1rem;
-    margin-bottom: 1.25rem;
-    gap: 0.75rem;
-    align-items: flex-start;
+    background: var(--surface); border: 1px solid var(--accent-dim); border-radius: var(--radius);
+    padding: 0.85rem 1rem; margin-bottom: 1.25rem; gap: 0.75rem; align-items: flex-start;
   }
   .install-banner-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
   .install-banner-text { flex: 1; }
   .install-banner-text strong { display: block; font-size: 13px; font-weight: 600; color: var(--accent); margin-bottom: 2px; }
   .install-banner-text p { font-size: 12px; color: var(--muted); line-height: 1.5; }
   .install-close { background: none; border: none; color: var(--muted); font-size: 20px; cursor: pointer; padding: 0 2px; flex-shrink: 0; }
+
+  /* history */
   .log-controls { display: flex; gap: 0.6rem; margin-bottom: 1rem; flex-wrap: wrap; align-items: center; }
   .log-controls input, .log-controls select { font-size: 14px; padding: 0.55rem 0.75rem; flex: 1; min-width: 0; }
   .log-count { font-size: 11px; color: var(--muted); font-family: var(--mono); white-space: nowrap; }
-  .entry-list { display: flex; flex-direction: column; gap: 0.5rem; }
-  .entry-card {
-    background: var(--surface);
-    border: 1px solid var(--border2);
-    border-radius: var(--radius);
-    padding: 0.85rem 1rem;
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
+
+  /* day group */
+  .day-group { margin-bottom: 1.25rem; }
+  .day-group-header {
+    font-family: var(--mono); font-size: 10px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.12em; color: var(--muted); padding: 0 0 0.5rem;
+    border-bottom: 1px solid var(--border); margin-bottom: 0.5rem;
+    display: flex; justify-content: space-between;
   }
+  .day-group-count { color: var(--border2); }
+
+  .entry-list { display: flex; flex-direction: column; gap: 0.4rem; }
+
+  /* swipeable entry card */
+  .swipe-wrap { position: relative; overflow: hidden; border-radius: var(--radius); }
+  .swipe-delete-bg {
+    position: absolute; inset: 0; background: var(--danger);
+    display: flex; align-items: center; justify-content: flex-end;
+    padding-right: 1.25rem; border-radius: var(--radius);
+    font-family: var(--mono); font-size: 11px; font-weight: 700;
+    letter-spacing: 0.08em; color: #fff; opacity: 0; transition: opacity 0.15s;
+  }
+  .entry-card {
+    background: var(--surface); border: 1px solid var(--border2); border-radius: var(--radius);
+    padding: 0.85rem 1rem; display: flex; align-items: center; gap: 0.75rem;
+    position: relative; transition: transform 0.0s; will-change: transform;
+    touch-action: pan-y;
+  }
+  .entry-card.swiping { transition: none; }
   .entry-main { flex: 1; min-width: 0; }
   .entry-exercise { font-size: 14px; font-weight: 600; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .entry-meta { font-family: var(--mono); font-size: 12px; color: var(--muted); margin-top: 2px; }
   .entry-right { text-align: right; flex-shrink: 0; }
   .entry-weight { font-family: var(--mono); font-size: 1.1rem; font-weight: 700; color: var(--text); line-height: 1; }
-  .entry-vol { font-family: var(--mono); font-size: 11px; color: var(--accent-dim); margin-top: 2px; }
-  .pr-badge { font-family: var(--mono); font-size: 8px; font-weight: 700; letter-spacing: 0.1em; color: var(--gold); border: 1px solid var(--gold); padding: 1px 5px; border-radius: 2px; margin-left: 5px; vertical-align: middle; }
-  .delete-btn {
-    background: none; border: none; cursor: pointer; color: var(--border2);
-    font-size: 20px; padding: 4px 6px; border-radius: 4px; transition: color 0.15s;
-    line-height: 1; flex-shrink: 0; min-width: 36px; min-height: 36px;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .delete-btn:active { color: var(--danger); background: rgba(255,90,90,0.1); }
+
   .empty-state {
     text-align: center; padding: 3rem 1rem; color: var(--muted);
     font-family: var(--mono); font-size: 12px; line-height: 2;
     border: 1px dashed var(--border2); border-radius: var(--radius);
   }
-  .pr-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
-  .pr-card {
-    background: var(--surface); border: 1px solid var(--border2);
-    border-radius: 8px; padding: 0.9rem 1rem 1rem; position: relative; overflow: hidden;
+
+  /* progress */
+  .prog-controls { display: flex; gap: 0.75rem; margin-bottom: 1.25rem; align-items: flex-end; flex-wrap: wrap; }
+  .prog-controls .field { flex: 1; min-width: 140px; }
+  .toggle-group { display: flex; border: 1px solid var(--border2); border-radius: var(--radius); overflow: hidden; flex-shrink: 0; }
+  .toggle-btn {
+    font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: 0.06em;
+    text-transform: uppercase; padding: 0.6rem 0.85rem; border: none; cursor: pointer;
+    background: var(--surface); color: var(--muted); transition: all 0.15s;
   }
-  .pr-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--accent); }
-  .pr-exercise { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-bottom: 0.5rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .pr-weight { font-family: var(--mono); font-size: 1.6rem; font-weight: 700; color: var(--accent); line-height: 1; }
-  .pr-weight span { font-size: 0.85rem; color: var(--accent-dim); }
-  .pr-detail { font-size: 11px; color: var(--muted); font-family: var(--mono); margin-top: 4px; }
-  .prog-select-row { margin-bottom: 1.25rem; }
+  .toggle-btn.active { background: var(--accent); color: #0d0d0d; }
   .chart-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 1rem; margin-bottom: 0.75rem; }
   .chart-title { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 0.85rem; }
   canvas { display: block; width: 100% !important; }
@@ -270,35 +215,49 @@
   </div>
 
   <div class="content">
+
     <!-- LOG -->
     <div class="panel active" id="panel-log">
       <div id="install-banner" class="install-banner" style="display:none;">
         <div class="install-banner-icon">📲</div>
         <div class="install-banner-text">
           <strong>Install as App</strong>
-          <p>Tap the Share button in your browser, then "Add to Home Screen" to use LiftTrack like a native app — no browser bar.</p>
+          <p>Tap Share in your browser, then "Add to Home Screen" to use LiftTrack without a browser bar.</p>
         </div>
         <button class="install-close" onclick="dismissBanner()">×</button>
       </div>
-      <div class="today-badge"><span class="today-dot"></span><span id="today-label"></span></div>
+
+      <!-- today summary -->
+      <div class="today-summary">
+        <div class="today-summary-header">
+          <span class="today-dot"></span>
+          <span class="today-label" id="today-label"></span>
+        </div>
+        <div id="today-chips"></div>
+      </div>
+
+      <!-- form -->
       <div class="form-grid">
         <div class="field full">
           <label>Exercise</label>
-          <input type="text" id="f-exercise" list="exercise-list" placeholder="e.g. Bench Press" autocomplete="off" autocorrect="off" autocapitalize="words">
+          <input type="text" id="f-exercise" list="exercise-list" placeholder="e.g. Bench Press"
+            autocomplete="off" autocorrect="off" autocapitalize="words"
+            oninput="onExerciseInput()">
           <datalist id="exercise-list"></datalist>
+          <div class="last-hint" id="last-hint"></div>
         </div>
         <div class="field">
           <label>Weight (kg)</label>
           <input type="number" id="f-weight" placeholder="80" min="0" step="0.5" inputmode="decimal">
         </div>
-        <div class="field full" style="grid-template-columns:1fr 1fr; display:grid; gap:0.85rem;">
+        <div class="field full" style="display:grid; grid-template-columns:1fr 1fr; gap:0.85rem;">
           <div class="field">
             <label>Sets</label>
-            <input type="number" id="f-sets" placeholder="3" min="1" value="3" inputmode="numeric">
+            <input type="number" id="f-sets" min="1" value="3" inputmode="numeric">
           </div>
           <div class="field">
             <label>Reps</label>
-            <input type="number" id="f-reps" placeholder="8" min="1" value="8" inputmode="numeric">
+            <input type="number" id="f-reps" min="1" value="8" inputmode="numeric">
           </div>
         </div>
       </div>
@@ -317,16 +276,21 @@
 
     <!-- PROGRESS -->
     <div class="panel" id="panel-progress">
-      <div class="prog-select-row">
+      <div class="prog-controls">
         <div class="field">
           <label>Exercise</label>
           <select id="prog-exercise" onchange="renderProgress()">
             <option value="">Select an exercise</option>
           </select>
         </div>
+        <div class="toggle-group">
+          <button class="toggle-btn active" id="tog-max" onclick="setProgMode('max',this)">Max</button>
+          <button class="toggle-btn" id="tog-avg" onclick="setProgMode('avg',this)">Avg</button>
+        </div>
       </div>
       <div id="prog-body"></div>
     </div>
+
   </div>
 
   <nav class="bottom-nav">
@@ -346,19 +310,23 @@
 </div>
 
 <div class="toast" id="toast"></div>
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <script>
 const STORE_KEY = 'lifttrack_v1';
 const BANNER_KEY = 'lifttrack_banner_dismissed';
-let entries = [], progressChart = null;
+let entries = [], progressChart = null, progMode = 'max';
 
+/* ── storage ── */
 function load() { try { entries = JSON.parse(localStorage.getItem(STORE_KEY)) || []; } catch(e) { entries = []; } }
 function save() { localStorage.setItem(STORE_KEY, JSON.stringify(entries)); }
 
+/* ── utils ── */
+function haptic() { try { navigator.vibrate && navigator.vibrate(30); } catch(e) {} }
+
 function toast(msg) {
   const el = document.getElementById('toast');
-  el.textContent = msg;
-  el.classList.add('show');
+  el.textContent = msg; el.classList.add('show');
   setTimeout(() => el.classList.remove('show'), 2200);
 }
 
@@ -373,6 +341,16 @@ function fmt(s) {
   return `${d}/${m}/${y.slice(2)}`;
 }
 
+function fmtFull(s) {
+  if (!s) return '';
+  const [y,m,d] = s.split('-');
+  const date = new Date(+y, +m-1, +d);
+  const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const isToday = s === todayStr();
+  return isToday ? `Today · ${days[date.getDay()]} ${+d} ${months[+m-1]}` : `${days[date.getDay()]} ${+d} ${months[+m-1]} ${y}`;
+}
+
 function fmtToday() {
   const d = new Date();
   const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
@@ -380,17 +358,45 @@ function fmtToday() {
   return `${days[d.getDay()]} ${d.getDate()} ${months[d.getMonth()]}`;
 }
 
-function vol(e) { return +(e.weight * e.sets * e.reps).toFixed(1); }
 function getExercises() { return [...new Set(entries.map(e => e.exercise))].sort(); }
 
-function getPRs() {
-  const prs = {};
-  entries.forEach(e => { if (!prs[e.exercise] || e.weight > prs[e.exercise].weight) prs[e.exercise] = e; });
-  return prs;
+/* last weight logged for a given exercise (any day) */
+function getLastWeight(exercise) {
+  const relevant = entries.filter(e => e.exercise === exercise).sort((a,b) => b.id.localeCompare(a.id));
+  return relevant.length ? relevant[0].weight : null;
 }
 
-function isPR(entry) { const pr = getPRs()[entry.exercise]; return pr && pr.id === entry.id; }
+/* ── exercise input hint ── */
+function onExerciseInput() {
+  const ex = document.getElementById('f-exercise').value.trim();
+  const hint = document.getElementById('last-hint');
+  if (!ex) { hint.textContent = ''; return; }
+  const lw = getLastWeight(ex);
+  hint.textContent = lw !== null ? `last: ${lw} kg` : '';
+}
 
+/* ── today summary chips ── */
+function renderTodayChips() {
+  const today = todayStr();
+  document.getElementById('today-label').textContent = fmtToday();
+  const todayEntries = entries.filter(e => e.date === today);
+  const container = document.getElementById('today-chips');
+  if (!todayEntries.length) {
+    container.innerHTML = '<span class="today-empty">nothing logged yet</span>';
+    return;
+  }
+  // group by exercise, pick max weight
+  const byEx = {};
+  todayEntries.forEach(e => {
+    if (!byEx[e.exercise] || e.weight > byEx[e.exercise].weight) byEx[e.exercise] = e;
+  });
+  container.innerHTML = Object.keys(byEx).sort().map(ex => {
+    const e = byEx[ex];
+    return `<span class="today-chip">${ex} <span>${e.weight}kg</span></span>`;
+  }).join('');
+}
+
+/* ── data lists ── */
 function updateDataLists() {
   const exs = getExercises();
   document.getElementById('exercise-list').innerHTML = exs.map(e => `<option value="${e}">`).join('');
@@ -402,28 +408,36 @@ function updateDataLists() {
   pe.innerHTML = '<option value="">Select an exercise</option>' + exs.map(e => `<option value="${e}"${e===curP?' selected':''}>${e}</option>`).join('');
 }
 
+/* ── add entry ── */
 function addEntry() {
   const exercise = document.getElementById('f-exercise').value.trim();
-  const weight = parseFloat(document.getElementById('f-weight').value);
-  const sets = parseInt(document.getElementById('f-sets').value);
-  const reps = parseInt(document.getElementById('f-reps').value);
+  const weight   = parseFloat(document.getElementById('f-weight').value);
+  const sets     = parseInt(document.getElementById('f-sets').value);
+  const reps     = parseInt(document.getElementById('f-reps').value);
   if (!exercise || isNaN(weight) || isNaN(sets) || isNaN(reps)) { toast('!! fill in all fields'); return; }
+
   const entry = { id: Date.now().toString(), exercise, weight, sets, reps, date: todayStr() };
   entries.push(entry);
   save();
-  toast(isPR(entry) ? `NEW PR: ${exercise} @ ${weight}kg` : 'logged ✓');
-  document.getElementById('f-exercise').value = '';
+  haptic();
+  toast('logged ✓');
+
+  // keep exercise pre-filled, clear weight only
   document.getElementById('f-weight').value = '';
-  document.activeElement.blur();
+  // update hint with newly logged weight
+  document.getElementById('last-hint').textContent = `last: ${weight} kg`;
+  document.getElementById('f-weight').focus();
+
   updateAll();
 }
 
+/* ── delete entry ── */
 function deleteEntry(id) {
-  if (!confirm('Delete this entry?')) return;
   entries = entries.filter(e => e.id !== id);
-  save(); updateAll(); toast('deleted');
+  save(); updateAll(); haptic(); toast('deleted');
 }
 
+/* ── history (grouped by day, swipe to delete) ── */
 function renderHistory() {
   const search = document.getElementById('h-search').value.toLowerCase();
   const filter = document.getElementById('h-filter').value;
@@ -431,47 +445,128 @@ function renderHistory() {
   if (search) list = list.filter(e => e.exercise.toLowerCase().includes(search));
   if (filter) list = list.filter(e => e.exercise === filter);
   list.sort((a,b) => b.date.localeCompare(a.date) || b.id.localeCompare(a.id));
+
   document.getElementById('h-count').textContent = `${list.length} entries`;
   const body = document.getElementById('history-body');
   if (!list.length) { body.innerHTML = '<div class="empty-state">no entries yet<br>log your first lift →</div>'; return; }
-  const prMap = getPRs();
-  body.innerHTML = `<div class="entry-list">${list.map(e => {
-    return `<div class="entry-card">
-      <div class="entry-main">
-        <div class="entry-exercise">${e.exercise}</div>
-        <div class="entry-meta">${e.sets}×${e.reps} · ${fmt(e.date)}</div>
+
+  // group by date
+  const groups = {};
+  list.forEach(e => { if (!groups[e.date]) groups[e.date] = []; groups[e.date].push(e); });
+  const sortedDates = Object.keys(groups).sort((a,b) => b.localeCompare(a));
+
+  body.innerHTML = sortedDates.map(date => {
+    const items = groups[date];
+    const cards = items.map(e => `
+      <div class="swipe-wrap" id="sw-${e.id}">
+        <div class="swipe-delete-bg" id="sdb-${e.id}">DELETE</div>
+        <div class="entry-card" id="ec-${e.id}"
+          data-id="${e.id}"
+          ontouchstart="swipeStart(event,'${e.id}')"
+          ontouchmove="swipeMove(event,'${e.id}')"
+          ontouchend="swipeEnd(event,'${e.id}')">
+          <div class="entry-main">
+            <div class="entry-exercise">${e.exercise}</div>
+            <div class="entry-meta">${e.sets}×${e.reps}</div>
+          </div>
+          <div class="entry-right">
+            <div class="entry-weight">${e.weight}<span style="font-size:11px;color:var(--muted)"> kg</span></div>
+          </div>
+        </div>
+      </div>`).join('');
+    return `<div class="day-group">
+      <div class="day-group-header">
+        <span>${fmtFull(date)}</span>
+        <span class="day-group-count">${items.length} set${items.length>1?'s':''}</span>
       </div>
-      <div class="entry-right">
-        <div class="entry-weight">${e.weight}<span style="font-size:11px;color:var(--muted)"> kg</span></div>
-      </div>
-      <button class="delete-btn" onclick="deleteEntry('${e.id}')">×</button>
+      <div class="entry-list">${cards}</div>
     </div>`;
-  }).join('')}</div>`;
+  }).join('');
+}
+
+/* ── swipe to delete ── */
+const swipeState = {};
+function swipeStart(e, id) {
+  const t = e.touches[0];
+  swipeState[id] = { startX: t.clientX, startY: t.clientY, dx: 0, decided: false };
+}
+function swipeMove(e, id) {
+  const s = swipeState[id]; if (!s) return;
+  const t = e.touches[0];
+  const dx = t.clientX - s.startX;
+  const dy = t.clientY - s.startY;
+  if (!s.decided) {
+    if (Math.abs(dx) < 6 && Math.abs(dy) < 6) return;
+    s.decided = true;
+    s.isHorizontal = Math.abs(dx) > Math.abs(dy);
+  }
+  if (!s.isHorizontal) return;
+  e.preventDefault();
+  s.dx = Math.min(0, dx); // only left swipe
+  const card = document.getElementById('ec-' + id);
+  const bg   = document.getElementById('sdb-' + id);
+  if (!card) return;
+  card.classList.add('swiping');
+  card.style.transform = `translateX(${s.dx}px)`;
+  const ratio = Math.min(1, Math.abs(s.dx) / 100);
+  bg.style.opacity = ratio;
+}
+function swipeEnd(e, id) {
+  const s = swipeState[id]; if (!s) return;
+  const card = document.getElementById('ec-' + id);
+  const bg   = document.getElementById('sdb-' + id);
+  if (!card) { delete swipeState[id]; return; }
+  card.classList.remove('swiping');
+  if (s.dx < -80) {
+    card.style.transform = 'translateX(-100%)';
+    bg.style.opacity = '1';
+    setTimeout(() => deleteEntry(id), 250);
+  } else {
+    card.style.transform = '';
+    bg.style.opacity = '0';
+  }
+  delete swipeState[id];
+}
+
+/* ── progress ── */
+function setProgMode(mode, btn) {
+  progMode = mode;
+  document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderProgress();
 }
 
 function renderProgress() {
-  const ex = document.getElementById('prog-exercise').value;
+  const ex   = document.getElementById('prog-exercise').value;
   const body = document.getElementById('prog-body');
   if (!ex) { body.innerHTML = '<div class="empty-state">select an exercise to view progress</div>'; return; }
 
-  // Group entries by day — take the max weight logged on each day
+  // group by day
   const byDay = {};
   entries.filter(e => e.exercise === ex).forEach(e => {
-    if (!byDay[e.date] || e.weight > byDay[e.date]) byDay[e.date] = e.weight;
+    if (!byDay[e.date]) byDay[e.date] = [];
+    byDay[e.date].push(e.weight);
   });
   const days = Object.keys(byDay).sort();
   if (days.length < 2) { body.innerHTML = '<div class="empty-state">need at least 2 sessions to show progress</div>'; return; }
 
-  const labels = days.map(d => fmt(d));
-  const weights = days.map(d => byDay[d]);
-  const maxW = Math.max(...weights);
+  const labels  = days.map(d => fmt(d));
+  const maxVals = days.map(d => Math.max(...byDay[d]));
+  const avgVals = days.map(d => {
+    const arr = byDay[d];
+    return +( arr.reduce((a,b)=>a+b,0) / arr.length ).toFixed(1);
+  });
+  const weights = progMode === 'max' ? maxVals : avgVals;
+
+  const maxW  = Math.max(...maxVals);
   const delta = +(weights[weights.length-1] - weights[0]).toFixed(1);
   const sessions = days.length;
 
   if (progressChart) { progressChart.destroy(); progressChart = null; }
+
   body.innerHTML = `
     <div class="chart-wrap">
-      <div class="chart-title">weight over time — ${ex}</div>
+      <div class="chart-title">${progMode === 'max' ? 'max' : 'avg'} weight per session — ${ex}</div>
       <canvas id="prog-chart" height="200"></canvas>
     </div>
     <div class="prog-stats">
@@ -479,24 +574,45 @@ function renderProgress() {
       <div class="pstat"><div class="pstat-val ${delta>=0?'up':'down'}">${delta>=0?'+':''}${delta} kg</div><div class="pstat-label">progress</div></div>
       <div class="pstat"><div class="pstat-val">${sessions}</div><div class="pstat-label">sessions</div></div>
     </div>`;
+
   setTimeout(() => {
     const canvas = document.getElementById('prog-chart');
     if (!canvas) return;
     progressChart = new Chart(canvas.getContext('2d'), {
-    type: 'line',
-    data: { labels, datasets: [{ label: 'Weight (kg)', data: weights, borderColor: '#c8f060', backgroundColor: 'rgba(200,240,96,0.08)', pointBackgroundColor: '#c8f060', pointRadius: 4, pointHoverRadius: 6, borderWidth: 2, fill: true, tension: 0.35 }] },
-    options: {
-      responsive: true,
-      plugins: { legend: { display: false }, tooltip: { backgroundColor: '#1f1f1f', borderColor: '#3a3a3a', borderWidth: 1, titleColor: '#c8f060', bodyColor: '#e8e4dc', titleFont: { family: 'Space Mono', size: 11 }, bodyFont: { family: 'Space Mono', size: 12 } } },
-      scales: {
-        x: { grid: { color: '#1f1f1f' }, ticks: { color: '#787060', font: { family: 'Space Mono', size: 10 }, maxRotation: 45 } },
-        y: { grid: { color: '#1f1f1f' }, ticks: { color: '#787060', font: { family: 'Space Mono', size: 10 }, callback: v => v + ' kg' } }
+      type: 'line',
+      data: {
+        labels,
+        datasets: [{
+          data: weights,
+          borderColor: '#c8f060',
+          backgroundColor: 'rgba(200,240,96,0.07)',
+          pointBackgroundColor: '#c8f060',
+          pointRadius: 4, pointHoverRadius: 6,
+          borderWidth: 2, fill: true, tension: 0.35
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: '#1f1f1f', borderColor: '#3a3a3a', borderWidth: 1,
+            titleColor: '#c8f060', bodyColor: '#e8e4dc',
+            titleFont: { family: 'Space Mono', size: 11 },
+            bodyFont: { family: 'Space Mono', size: 12 },
+            callbacks: { label: ctx => ` ${ctx.parsed.y} kg` }
+          }
+        },
+        scales: {
+          x: { grid: { color: '#1f1f1f' }, ticks: { color: '#787060', font: { family: 'Space Mono', size: 10 }, maxRotation: 45 } },
+          y: { grid: { color: '#1f1f1f' }, ticks: { color: '#787060', font: { family: 'Space Mono', size: 10 }, callback: v => v + ' kg' } }
+        }
       }
-    }
-  });
-}, 0);
+    });
+  }, 0);
 }
 
+/* ── tab switching ── */
 function switchTab(tab, btn) {
   document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
   document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
@@ -505,29 +621,32 @@ function switchTab(tab, btn) {
   if (tab === 'progress') renderProgress();
 }
 
-function updateAll() { updateDataLists(); renderHistory(); }
+/* ── update all ── */
+function updateAll() {
+  updateDataLists();
+  renderTodayChips();
+  renderHistory();
+}
 
+/* ── install banner ── */
 function dismissBanner() {
   localStorage.setItem(BANNER_KEY, '1');
   document.getElementById('install-banner').style.display = 'none';
 }
-
 function checkInstallBanner() {
   const dismissed = localStorage.getItem(BANNER_KEY);
   const isStandalone = window.navigator.standalone || window.matchMedia('(display-mode: standalone)').matches;
-  if (!dismissed && !isStandalone) {
-    const b = document.getElementById('install-banner');
-    b.style.display = 'flex';
-  }
+  if (!dismissed && !isStandalone) document.getElementById('install-banner').style.display = 'flex';
 }
 
+/* ── PWA manifest ── */
 function injectManifest() {
-  const manifest = { name: "LiftTrack", short_name: "LiftTrack", start_url: ".", display: "standalone", background_color: "#0d0d0d", theme_color: "#0d0d0d", icons: [{ src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' fill='%230d0d0d'/%3E%3Ctext x='256' y='340' font-size='280' text-anchor='middle' fill='%23c8f060' font-family='monospace' font-weight='700'%3EL%3C/text%3E%3C/svg%3E", sizes: "512x512", type: "image/svg+xml", purpose: "any maskable" }] };
-  const blob = new Blob([JSON.stringify(manifest)], { type: 'application/manifest+json' });
+  const manifest = { name:"LiftTrack", short_name:"LiftTrack", start_url:".", display:"standalone", background_color:"#0d0d0d", theme_color:"#0d0d0d", icons:[{ src:"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' fill='%230d0d0d'/%3E%3Ctext x='256' y='340' font-size='280' text-anchor='middle' fill='%23c8f060' font-family='monospace' font-weight='700'%3EL%3C/text%3E%3C/svg%3E", sizes:"512x512", type:"image/svg+xml", purpose:"any maskable" }] };
+  const blob = new Blob([JSON.stringify(manifest)], { type:'application/manifest+json' });
   document.getElementById('pwa-manifest').href = URL.createObjectURL(blob);
 }
 
-document.getElementById('today-label').textContent = fmtToday();
+/* ── boot ── */
 injectManifest();
 load();
 updateAll();
