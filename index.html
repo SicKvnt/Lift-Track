@@ -267,11 +267,6 @@
 <div class="app-shell">
   <div class="top-bar">
     <h1>LIFT<span>/</span>TRACK</h1>
-    <div class="header-stats">
-      <div class="hstat"><div class="hstat-val" id="stat-total">0</div><div class="hstat-label">sets</div></div>
-      <div class="hstat"><div class="hstat-val" id="stat-exercises">0</div><div class="hstat-label">lifts</div></div>
-      <div class="hstat"><div class="hstat-val" id="stat-days">0</div><div class="hstat-label">days</div></div>
-    </div>
   </div>
 
   <div class="content">
@@ -320,12 +315,6 @@
       <div id="history-body"></div>
     </div>
 
-    <!-- RECORDS -->
-    <div class="panel" id="panel-prs">
-      <p class="section-label">// personal records</p>
-      <div id="pr-body"></div>
-    </div>
-
     <!-- PROGRESS -->
     <div class="panel" id="panel-progress">
       <div class="prog-select-row">
@@ -348,10 +337,6 @@
     <button class="nav-btn" onclick="switchTab('history',this)">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/></svg>
       History
-    </button>
-    <button class="nav-btn" onclick="switchTab('prs',this)">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-      Records
     </button>
     <button class="nav-btn" onclick="switchTab('progress',this)">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
@@ -379,20 +364,20 @@ function toast(msg) {
 
 function todayStr() {
   const d = new Date();
-  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+  return \\`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}\`;
 }
 
 function fmt(s) {
   if (!s) return '—';
   const [y,m,d] = s.split('-');
-  return `${d}/${m}/${y.slice(2)}`;
+  return \\`${d}/${m}/${y.slice(2)}\`;
 }
 
 function fmtToday() {
   const d = new Date();
   const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
   const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  return `${days[d.getDay()]} ${d.getDate()} ${months[d.getMonth()]}`;
+  return \\`${days[d.getDay()]} ${d.getDate()} ${months[d.getMonth()]}\`;
 }
 
 function vol(e) { return +(e.weight * e.sets * e.reps).toFixed(1); }
@@ -405,12 +390,6 @@ function getPRs() {
 }
 
 function isPR(entry) { const pr = getPRs()[entry.exercise]; return pr && pr.id === entry.id; }
-
-function updateHeader() {
-  document.getElementById('stat-total').textContent = entries.length;
-  document.getElementById('stat-exercises').textContent = getExercises().length;
-  document.getElementById('stat-days').textContent = new Set(entries.map(e => e.date)).size;
-}
 
 function updateDataLists() {
   const exs = getExercises();
@@ -452,38 +431,20 @@ function renderHistory() {
   if (search) list = list.filter(e => e.exercise.toLowerCase().includes(search));
   if (filter) list = list.filter(e => e.exercise === filter);
   list.sort((a,b) => b.date.localeCompare(a.date) || b.id.localeCompare(a.id));
-  document.getElementById('h-count').textContent = `${list.length} entries`;
+  document.getElementById('h-count').textContent = \\`${list.length} entries\`;
   const body = document.getElementById('history-body');
   if (!list.length) { body.innerHTML = '<div class="empty-state">no entries yet<br>log your first lift →</div>'; return; }
   const prMap = getPRs();
   body.innerHTML = `<div class="entry-list">${list.map(e => {
-    const prFlag = prMap[e.exercise] && prMap[e.exercise].id === e.id ? '<span class="pr-badge">PR</span>' : '';
     return `<div class="entry-card">
       <div class="entry-main">
-        <div class="entry-exercise">${e.exercise}${prFlag}</div>
+        <div class="entry-exercise">${e.exercise}</div>
         <div class="entry-meta">${e.sets}×${e.reps} · ${fmt(e.date)}</div>
       </div>
       <div class="entry-right">
         <div class="entry-weight">${e.weight}<span style="font-size:11px;color:var(--muted)"> kg</span></div>
-        <div class="entry-vol">${vol(e)} kg vol</div>
       </div>
       <button class="delete-btn" onclick="deleteEntry('${e.id}')">×</button>
-    </div>`;
-  }).join('')}</div>`;
-}
-
-function renderPRs() {
-  const prs = getPRs();
-  const body = document.getElementById('pr-body');
-  const exs = Object.keys(prs).sort();
-  if (!exs.length) { body.innerHTML = '<div class="empty-state">no records yet<br>start logging lifts →</div>'; return; }
-  body.innerHTML = `<div class="pr-grid">${exs.map(ex => {
-    const e = prs[ex];
-    const count = entries.filter(x => x.exercise === ex).length;
-    return `<div class="pr-card">
-      <div class="pr-exercise">${ex}</div>
-      <div class="pr-weight">${e.weight}<span> kg</span></div>
-      <div class="pr-detail">${e.sets}×${e.reps} · ${fmt(e.date)}<br>${count} entries</div>
     </div>`;
   }).join('')}</div>`;
 }
@@ -512,18 +473,22 @@ function renderProgress() {
       <div class="pstat"><div class="pstat-val">${data.length}</div><div class="pstat-label">sessions</div></div>
       <div class="pstat"><div class="pstat-val">${totalVol.toLocaleString()}</div><div class="pstat-label">total volume</div></div>
     </div>`;
-  progressChart = new Chart(document.getElementById('prog-chart').getContext('2d'), {
+  setTimeout(() => {
+    const canvas = document.getElementById('prog-chart');
+    if (!canvas) return;
+    progressChart = new Chart(canvas.getContext('2d'), {
     type: 'line',
     data: { labels, datasets: [{ label: 'Weight (kg)', data: weights, borderColor: '#c8f060', backgroundColor: 'rgba(200,240,96,0.08)', pointBackgroundColor: '#c8f060', pointRadius: 4, pointHoverRadius: 6, borderWidth: 2, fill: true, tension: 0.35 }] },
     options: {
       responsive: true,
-      plugins: { legend: { display: false }, tooltip: { backgroundColor: '#1f1f1f', borderColor: '#3a3a3a', borderWidth: 1, titleColor: '#c8f060', bodyColor: '#e8e4dc', titleFont: { family: 'Space Mono', size: 11 }, bodyFont: { family: 'Space Mono', size: 12 } } },
+      plugins: { legend: { display: false }, tooltip: { backgroundColor: '#1f1f1f', borderColor: '#3a3a3a', borderWidth: 1, titleColor: '#c8f060', bodyColor: '#e8e4dc', titleFont: { family: 'Space Mono', size: 11 }, bodyFont: { family: 'Space Mono', size: 12 } },
       scales: {
         x: { grid: { color: '#1f1f1f' }, ticks: { color: '#787060', font: { family: 'Space Mono', size: 10 }, maxRotation: 45 } },
         y: { grid: { color: '#1f1f1f' }, ticks: { color: '#787060', font: { family: 'Space Mono', size: 10 }, callback: v => v + ' kg' } }
       }
     }
   });
+}, 0);
 }
 
 function switchTab(tab, btn) {
@@ -534,7 +499,7 @@ function switchTab(tab, btn) {
   if (tab === 'progress') renderProgress();
 }
 
-function updateAll() { updateHeader(); updateDataLists(); renderHistory(); renderPRs(); renderProgress(); }
+function updateAll() { updateDataLists(); renderHistory(); }
 
 function dismissBanner() {
   localStorage.setItem(BANNER_KEY, '1');
